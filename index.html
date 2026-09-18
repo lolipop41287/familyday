@@ -1007,7 +1007,35 @@ body > .confetti-piece{
 }
 </style>
 
-<style id="familyday-balanced-left-art">.fd-mini-banner{margin-top:16px;border-radius:18px;overflow:hidden;background:rgba(255,255,255,.82);border:2px solid rgba(255,255,255,.9);box-shadow:0 10px 24px rgba(16,35,63,.10);padding:8px 8px 10px}.fd-mini-art svg{display:block;width:100%;height:auto;max-height:128px}.fd-mini-caption{text-align:center;font-size:12px;font-weight:900;letter-spacing:.04em;color:#0b6f91;margin-top:5px}@media(max-width:767px){.fd-mini-banner{margin-top:12px}.fd-mini-art svg{max-height:105px}.fd-mini-caption{font-size:11px}}</style></head>
+<style id="familyday-balanced-left-art">.fd-mini-banner{margin-top:16px;border-radius:18px;overflow:hidden;background:rgba(255,255,255,.82);border:2px solid rgba(255,255,255,.9);box-shadow:0 10px 24px rgba(16,35,63,.10);padding:8px 8px 10px}.fd-mini-art svg{display:block;width:100%;height:auto;max-height:128px}.fd-mini-caption{text-align:center;font-size:12px;font-weight:900;letter-spacing:.04em;color:#0b6f91;margin-top:5px}@media(max-width:767px){.fd-mini-banner{margin-top:12px}.fd-mini-art svg{max-height:105px}.fd-mini-caption{font-size:11px}}</style>
+
+<style id="pwa-zoom-controls">
+#pwaZoomControls{
+ position:fixed;right:16px;top:16px;z-index:2147483647;visibility:visible!important;opacity:1!important;
+ display:flex!important;align-items:center;gap:5px;padding:6px;
+ border-radius:16px;background:rgba(255,255,255,.95);
+ border:2px solid rgba(255,255,255,.98);
+ box-shadow:0 8px 24px rgba(0,35,65,.22);
+ backdrop-filter:blur(10px);
+}
+#pwaZoomControls button{
+ width:38px;height:36px;border:0;border-radius:10px;
+ background:#eef7fb;color:#16415d;font-size:20px;font-weight:1000;
+ cursor:pointer;line-height:1;
+}
+#pwaZoomControls button:active{transform:scale(.94)}
+#pwaZoomValue{
+ min-width:55px;text-align:center;font-size:12px;
+ font-weight:1000;color:#16415d;
+}
+@media(max-width:767px){
+ #pwaZoomControls{right:10px;top:10px;gap:3px;padding:5px}
+ #pwaZoomControls button{width:34px;height:32px;font-size:18px}
+ #pwaZoomValue{min-width:48px;font-size:11px}
+}
+</style>
+
+</head>
 <body>
 
 <div id="eventFX">
@@ -1745,6 +1773,39 @@ document.addEventListener("DOMContentLoaded",function(){
 if("serviceWorker" in navigator && location.protocol!=="file:"){
   window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}));
 }
+</script>
+
+
+
+<script id="pwa-zoom-controller">
+(function(){
+ const KEY="familyday-pwa-zoom", MIN=.50, MAX=1.20, STEP=.05;
+ const clamp=v=>Math.min(MAX,Math.max(MIN,v));
+ function get(){const n=parseFloat(localStorage.getItem(KEY));return Number.isFinite(n)?clamp(n):1;}
+ function apply(v){
+   v=clamp(v);
+   document.documentElement.style.zoom=v;
+   const el=document.getElementById("pwaZoomValue");
+   if(el) el.textContent=Math.round(v*100)+"%";
+   localStorage.setItem(KEY,String(v));
+ }
+ function make(){
+   if(document.getElementById("pwaZoomControls")) return;
+   const b=document.createElement("div");
+   b.id="pwaZoomControls";
+   b.innerHTML='<button type="button" id="pwaZoomOut" aria-label="Zoom out">−</button>'+
+     '<span id="pwaZoomValue" title="Saiz paparan">100%</span>'+
+     '<button type="button" id="pwaZoomIn" aria-label="Zoom in">+</button>'+
+     '<button type="button" id="pwaZoomReset" aria-label="Reset zoom">↺</button>';
+   const shell=document.getElementById("proShell");
+   (shell || document.body).appendChild(b);
+   document.getElementById("pwaZoomOut").onclick=()=>apply(get()-.05);
+   document.getElementById("pwaZoomIn").onclick=()=>apply(get()+.05);
+   document.getElementById("pwaZoomReset").onclick=()=>apply(1);
+   apply(get());
+ }
+ if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",make); else make();
+})();
 </script>
 
 </body></html>
