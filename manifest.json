@@ -1,0 +1,31 @@
+{
+  "name": "FAMILY DAY C SQUAD 2026",
+  "short_name": "FAMILY DAY",
+  "description": "FAMILY DAY C SQUAD 2026 \u2013 EXPORT KLIA",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "landscape",
+  "background_color": "#eaf7ff",
+  "theme_color": "#0b7fab",
+  "icons": [
+    {
+      "src": "./icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
