@@ -330,7 +330,7 @@ body:after{
 .pro-flags{font-size:30px;letter-spacing:14px;margin:8px 0}
 .pro-sign{position:absolute;top:18px;width:150px;padding:15px 10px;color:#fff8e8;background:#80502d;border:5px solid #c98645;border-radius:10px;box-shadow:0 10px 20px rgba(0,0,0,.22);font-weight:900;line-height:1.05}
 .pro-sign.left{left:0;transform:rotate(-5deg)}.pro-sign.right{right:0;transform:rotate(5deg)}
-.pro-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:4px 0 20px}
+.pro-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:4px 0 38px}
 .pro-stat{background:rgba(255,255,255,.92);border:3px solid rgba(255,255,255,.9);border-radius:24px;padding:16px;text-align:center;box-shadow:0 12px 30px rgba(0,55,90,.16)}
 .pro-stat .num{font-size:clamp(34px,6vw,58px);font-weight:1000;line-height:.9}.pro-stat .lab{font-size:13px;font-weight:1000;letter-spacing:.12em;margin-top:7px}
 .pro-main{display:grid;grid-template-columns:1.05fr .95fr;gap:20px;align-items:start}
@@ -877,7 +877,6 @@ body > .confetti-piece{
 </style>
 
 
-<link rel="manifest" href="./manifest.json" data-replaced="true"><!-- original inline manifest removed -->%7B%22name%22%3A%22FAMILY%20DAY%20C%20SQUAD%202026%22%2C%22short_name%22%3A%22FAMILY%20DAY%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23eaf7ff%22%2C%22theme_color%22%3A%22%230b7fab%22%2C%22orientation%22%3A%22landscape%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage/svg%2Bxml%2C%253Csvg%2520xmlns%253D%2522http%253A%252F%252Fwww.w3.org%252F2000%252Fsvg%2522%2520viewBox%253D%25220%25200%2520128%2520128%2522%253E%253Crect%2520width%253D%2522128%2522%2520height%253D%2522128%2522%2520rx%253D%252228%2522%2520fill%253D%2522%25230b7fab%2522%252F%253E%253Ccircle%2520cx%253D%252292%2522%2520cy%253D%252234%2522%2520r%253D%252218%2522%2520fill%253D%2522%2523ffd54f%2522%252F%253E%253Cpath%2520d%253D%2522M0%252074Q32%252052%252064%252074T128%252074V128H0Z%2522%2520fill%253D%2522%25230aa6d6%2522%252F%253E%253Cpath%2520d%253D%2522M0%2520100Q32%252082%252064%2520100T128%2520100V128H0Z%2522%2520fill%253D%2522%25223fcf8e%2522%252F%253E%253Ctext%2520x%253D%252264%2522%2520y%253D%252270%2522%2520text-anchor%253D%2522middle%2522%2520font-size%253D%252232%2522%253E%25F0%259F%258E%2589%253C%252Ftext%253E%253C%252Fsvg%253E%22%2C%22sizes%22%3A%22128x128%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%7D%5D%7D">
 <link rel="manifest" href="./manifest.json">
 <meta name="theme-color" content="#0b7fab">
 <link rel="icon" href="./icon.svg">
@@ -927,7 +926,88 @@ body > .confetti-piece{
 }
 </style>
 
-</head>
+
+<style id="small-stats-clean">
+/* Statistik lebih kecil & lebih bernafas daripada kad peserta */
+#proShell .pro-stats{
+  gap:12px!important;
+  margin:0 0 28px!important;
+}
+#proShell .pro-stat{
+  padding:10px 12px!important;
+  border-radius:20px!important;
+  border-width:2px!important;
+  min-height:86px!important;
+}
+#proShell .pro-stat .num{
+  font-size:clamp(30px,4.5vw,46px)!important;
+  line-height:.9!important;
+}
+#proShell .pro-stat .lab{
+  font-size:11px!important;
+  margin-top:5px!important;
+}
+@media (min-width:768px){
+  #proShell .pro-stats{margin-bottom:30px!important}
+  #proShell .pro-stat{min-height:82px!important;padding:8px 10px!important}
+  #proShell .pro-stat .num{font-size:44px!important}
+}
+</style>
+
+
+<style id="layout-stats-left-above-select">
+@media (min-width:768px){
+  #proShell .pro-main{
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr) minmax(360px,46%)!important;
+    grid-template-rows:auto auto!important;
+    column-gap:32px!important;
+    row-gap:14px!important;
+    align-items:start!important;
+  }
+  #proShell .pro-main > .pro-stats{
+    grid-column:1!important;
+    grid-row:1!important;
+    width:100%!important;
+    margin:0!important;
+    display:grid!important;
+    grid-template-columns:repeat(3,minmax(0,1fr))!important;
+    gap:10px!important;
+  }
+  #proShell .pro-main > .pro-card:not(.pro-welcome){
+    grid-column:1!important;
+    grid-row:2!important;
+    width:100%!important;
+  }
+  #proShell .pro-main > .pro-welcome{
+    grid-column:2!important;
+    grid-row:1 / span 2!important;
+    width:100%!important;
+    margin:0!important;
+    align-self:stretch!important;
+  }
+  #proShell .pro-main > .pro-stats .pro-stat{
+    min-height:64px!important;
+    padding:7px 6px!important;
+    border-radius:16px!important;
+    border-width:2px!important;
+  }
+  #proShell .pro-main > .pro-stats .pro-stat .num{
+    font-size:32px!important;
+    line-height:.9!important;
+  }
+  #proShell .pro-main > .pro-stats .pro-stat .lab{
+    font-size:9px!important;
+    margin-top:4px!important;
+    letter-spacing:.1em!important;
+  }
+}
+@media (max-width:767px){
+  #proShell .pro-main > .pro-stats{margin:0 0 12px!important;}
+}
+</style>
+
+<style id="familyday-balanced-left-art">.fd-mini-banner{margin-top:16px;border-radius:18px;overflow:hidden;background:rgba(255,255,255,.82);border:2px solid rgba(255,255,255,.9);box-shadow:0 10px 24px rgba(16,35,63,.10);padding:8px 8px 10px}.fd-mini-art svg{display:block;width:100%;height:auto;max-height:128px}.fd-mini-caption{text-align:center;font-size:12px;font-weight:900;letter-spacing:.04em;color:#0b6f91;margin-top:5px}@media(max-width:767px){.fd-mini-banner{margin-top:12px}.fd-mini-art svg{max-height:105px}.fd-mini-caption{font-size:11px}}</style></head>
 <body>
 
 <div id="eventFX">
@@ -961,18 +1041,19 @@ font-weight:900!important;box-shadow:0 5px 15px rgba(0,0,0,.3)!important;">
     <div class="pro-flags">🌺 🌴 🌊 🌴 🌺</div>
   </header>
 
-  <section class="pro-stats">
-    <div class="pro-stat"><div class="num" id="proTotal">12</div><div class="lab">JUMLAH</div></div>
-    <div class="pro-stat"><div class="num" id="proPresent">0</div><div class="lab">HADIR</div></div>
-    <div class="pro-stat"><div class="num" id="proAbsent">12</div><div class="lab">BELUM</div></div>
-  </section>
-
   <section class="pro-main">
+    <section class="pro-stats">
+      <div class="pro-stat"><div class="num" id="proTotal">12</div><div class="lab">JUMLAH</div></div>
+      <div class="pro-stat"><div class="num" id="proPresent">0</div><div class="lab">HADIR</div></div>
+      <div class="pro-stat"><div class="num" id="proAbsent">12</div><div class="lab">BELUM</div></div>
+    </section>
+
     <div class="pro-card">
       <h2>👥 PILIH PESERTA YANG TELAH TIBA</h2>
       <select id="proSelect"><option value="">— Pilih nama peserta —</option></select>
       <button class="pro-attend" id="proAttend">✓ &nbsp; TANDA HADIR</button>
       <div class="pro-note">✓ Peserta yang telah hadir akan hilang daripada senarai pilihan</div>
+      <div class="fd-mini-banner" aria-hidden="true"><div class="fd-mini-art"><svg viewBox="0 0 520 150" role="img" aria-label="Ilustrasi pantai Family Day"><rect width="520" height="150" rx="22" fill="#dff8ff"/><circle cx="430" cy="42" r="25" fill="#ffd45c"/><path d="M0 76 Q80 58 160 78 T320 74 T520 76 V150 H0Z" fill="#37c6df"/><path d="M0 94 Q100 82 200 98 T400 95 T520 99 V150 H0Z" fill="#f3cf8a"/><path d="M78 125 Q96 80 108 47" stroke="#8a5a35" stroke-width="8" fill="none" stroke-linecap="round"/><path d="M108 49 Q82 38 63 49 Q78 24 108 39 Q112 16 127 12 Q125 37 117 48 Q145 30 159 45 Q137 55 116 55 Q139 68 127 78 Q112 62 108 52 Q93 69 75 67 Q83 54 103 49Z" fill="#2b9d63"/><circle cx="275" cy="111" r="12" fill="#ff8a65"/><circle cx="304" cy="109" r="11" fill="#ffd45c"/><circle cx="330" cy="113" r="12" fill="#7bc7ff"/><path d="M260 130 q15-20 30 0 M291 130 q15-22 30 0 M318 132 q15-20 30 0" stroke="#ffffff" stroke-width="5" fill="none" stroke-linecap="round"/><text x="205" y="40" font-family="Arial,sans-serif" font-size="22" font-weight="800" fill="#0b7fab">FAMILY DAY</text><text x="205" y="62" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="#35627a">C SQUAD • EXPORT KLIA</text></svg></div><div class="fd-mini-caption">🌴 Selamat Datang ke Family Day! 🌊</div></div>
     </div>
 
     <div class="pro-card pro-welcome" id="proWelcome">
